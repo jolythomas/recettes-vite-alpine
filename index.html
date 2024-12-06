@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recettes</title>
+</head>
+
+<body>
+    <div id="app">
+        <div x-data="Grille()" class="m-auto mb-10 max-w-screen-xl" x-init="init()">
+            <load src="src/parts/header.html"/>
+            <load src="src/parts/recettes.html"/>
+            <load src="src/parts/details.html"/>
+            <load src="src/parts/footer.html"/>
+
+        <script type="module" src="/src/main.js"></script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<nav x-data="{ open: false }" class="px-8 py-4 border-b border-b-gray-700">
+    <div class="mx-auto flex justify-between items-center">
+        <a href="#" class="text-xl font-bold">Recettes</a>
+        <div x-text="'Recettes totales : ' + recettes.length" class="hidden sm:block"></div>
+
+        <button @click="open = true" class="block sm:hidden">
+            <span class="material-symbols-outlined text-3xl">=</span>
+        </button>
+
+        <!-- Burger Menu -->
+        <div x-show="open"
+            class="sm:hidden flex flex-col items-center gap-4 justify-center text-center h-screen w-screen fixed z-50 top-0 right-0 bg-white"
+            x-transition>
+            <button @click="open = false" class="absolute right-8 top-5">
+                <span class="material-symbols-outlined text-2xl">x</span>
+            </button>
+            <div x-text="'Recettes totales : ' + recettes.length"></div>
+        </div>
+    </div>
+</nav>

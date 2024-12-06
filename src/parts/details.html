@@ -1,0 +1,36 @@
+<div x-show="vueDetaillee" @click.away="fermerVueDetaillee"
+    class="fixed inset-0 flex items-center justify-center bg-gray-900 backdrop-blur-sm bg-opacity-50 z-50">
+    <div class="bg-white m-5 p-8 rounded-lg shadow-lg w-full sm:w-2/3 lg:w-1/3 relative border border-gray-700">
+        <button @click="fermerVueDetaillee"
+            class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 focus:outline-none text-2xl mr-2">X</button>
+
+        <h2 x-text="recetteDetaillee.title" class="text-2xl font-bold mb-4"></h2>
+
+        <h3 class="text-xl mb-2">Ingrédients</h3>
+
+        <div class="flex justify-between ">
+            <ul class="list-disc pl-5">
+                <template x-for="ingredient in recetteDetaillee.ingredients">
+                    <li x-text="ingredient.quantity + ' ' + ingredient.unit + ' ' + ingredient.name"></li>
+                </template>
+            </ul>
+            <img :src="recetteDetaillee.imageUrl" class=" w-44">
+        </div>
+
+        <div class="border-t border-t-gray-700 mt-6">
+            <h3 class="text-xl mt-4 mb-2">Instructions</h3>
+            <div>
+                <p x-text="recetteDetaillee.instructions[currentStep - 1]"
+                    class="opacity-100 transition-opacity duration-300" x-show="currentStep === stepIndex"></p>
+            </div>
+
+            <div class="flex justify-between mt-4">
+                <button @click="changerEtape(-1)" :disabled="currentStep === 1"
+                    class="px-4 py-2 bg-gray-700 hover:bg-gray-900 text-white rounded disabled:opacity-50 disabled:hover:bg-gray-700">Précédent</button>
+                <button @click="changerEtape(1)" :disabled="currentStep === recetteDetaillee.instructions.length"
+                    class="px-4 py-2 bg-gray-700 hover:bg-gray-900 text-white rounded disabled:opacity-50 disabled:hover:bg-gray-700">Suivant</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

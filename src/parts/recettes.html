@@ -1,0 +1,43 @@
+<div class="grille p-4 px-8 min-h-screen">
+
+
+    <select id="difficulte" x-model="difficulteSelectionnee" x-effect="filtrerRecettes()"
+        class="mt-2 block w-full p-2 rounded border border-gray-700">
+        <option value="">Toutes les difficultés</option>
+        <option value="test">Test</option>
+        <template x-for="difficulte in difficultes" :key="difficulte">
+            <option :value="difficulte" x-text="difficulte.charAt(0).toUpperCase() + difficulte.slice(1)"></option>
+        </template>
+    </select>
+
+    
+    <p class="mt-4" x-text="'Recettes trouvées : ' + recettesFiltrees.length"></p>
+    
+    <div x-show="recettesFiltrees.length === 0" class="mt-4 text-center text-xl text-gray-700">
+        Aucune recette trouvée
+    </div>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+        <template x-for="recette in recettesFiltrees">
+            <div x-data="{ shown: false }" x-intersect="shown = true">
+                <div x-show="shown" x-transition.duration.1000ms
+                    class="card p-6 rounded-lg flex flex-col gap-3 border border-gray-700">
+                    <img :src="recette.imageUrl" class="card-image w-full h-auto object-cover rounded-md" alt="" />
+                    <div class="infos flex justify-between">
+                        <div>
+                            <h3 x-text="recette.title" class="card-title py-2 text-xl font-semibold"></h3>
+                            <p x-text="'Difficulté : ' + recette.difficulty.charAt(0).toUpperCase() + recette.difficulty.slice(1)"
+                                class="text-gray-700"></p>
+                            <p x-text="'Temps de préparation : ' + recette.preparationTime + ' min'"
+                                class="text-gray-700"></p>
+                            <p x-text="'Catégorie : ' + recette.category.charAt(0).toUpperCase() + recette.category.slice(1)"
+                                class="text-gray-700"></p>
+                        </div>
+                        <button @click="ouvrirVueDetaillee(recette)"
+                            class=" w-fit h-fit self-end  bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded mt-4">+</button>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</div>
